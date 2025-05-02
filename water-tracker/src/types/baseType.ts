@@ -8,6 +8,7 @@ type Employee = {
   employeeId: string;
   employeeName: string;
   isActive: boolean;
+  isDelete: boolean;
   transactions: Transaction[];
 };
 
