@@ -1,4 +1,4 @@
-import { Employees } from '../types/baseType';
+import type { Employees } from '../types/baseType';
 import { set, ref } from 'firebase/database';
 import { db } from './firebase';
 

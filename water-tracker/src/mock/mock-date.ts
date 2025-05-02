@@ -1,4 +1,4 @@
-import { Employees } from "../types/baseType";
+import type { Employees } from "../types/baseType";
 
 export const mock: Employees = [
     {
