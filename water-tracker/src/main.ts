@@ -1,10 +1,13 @@
 import './styles/reset.css';
-
 import { createHeader } from './app/header/header';
-import { saveDataToBase } from './api/sava-date';
+import { loadEmployees } from './api/load-date';
+import { showLoadingMessage } from './app/utils/show-loading-message';
 
-import { mock } from './mock/mock-date';
+async function loadData() {
+  showLoadingMessage();
+  const [employees] = await Promise.all([loadEmployees()]);
 
-saveDataToBase(mock)
+  document.body.replaceChildren(createHeader());
+}
 
-document.body.replaceChildren(createHeader())
+loadData();
