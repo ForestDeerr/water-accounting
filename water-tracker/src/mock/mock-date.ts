@@ -19,6 +19,18 @@ export const mock: Employees = [
       transactions: [
         { date: '2025-04-26', type: 'deposit', amount: 150 },
         { date: '2025-04-27', type: 'expense', amount: 50 },
+        { date: '2025-04-28', type: 'expense', amount: 96 },
+      ],
+    },
+    {
+      employeeId: '125',
+      employeeName: 'Вася Иванов',
+      isActive: false,
+      isDelete: false,
+      transactions: [
+        { date: '2025-04-26', type: 'deposit', amount: 150 },
+        { date: '2025-04-27', type: 'expense', amount: 50 },
+        { date: '2025-04-28', type: 'expense', amount: 150 },
       ],
     },
   ];
