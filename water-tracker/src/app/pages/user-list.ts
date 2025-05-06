@@ -1,4 +1,5 @@
 import type { Employees } from '../../types/baseType';
+import { createUsers } from './users';
 
 function userList(employees: Employees): HTMLElement {
   const arr = Object.entries(employees).map(([id, obj]) => ({ id, ...obj }));
@@ -17,32 +18,9 @@ function userList(employees: Employees): HTMLElement {
   textCash.className = 'text-cash';
   textCash.textContent = 'Баланс';
 
-  const users = document.createElement('div');
-  users.className = 'users';
-
   textContent.append(textUser, textCash);
 
-  arr.forEach((ele) => {
-    const user = document.createElement('div');
-    user.className = 'user';
-
-    const userName = document.createElement('div');
-    userName.className = 'user-name';
-
-    const bnt = document.createElement('button');
-    bnt.className = 'user-btn';
-    bnt.textContent = ele.employeeName;
-    userName.appendChild(bnt)
-
-    const cash = document.createElement('div');
-    cash.className = 'cash';
-    cash.textContent = '55';
-
-    user.append(userName, cash);
-    users.append(user);
-  });
-
-  container.append(textContent, users);
+  container.append(textContent, createUsers(arr));
 
   return container;
 }
