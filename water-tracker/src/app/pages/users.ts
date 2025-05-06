@@ -1,4 +1,6 @@
 import type { Employees } from '../../types/baseType';
+import { createButton } from '../utils/create-button';
+import { createModal } from './modal-windows/modal-windows';
 
 function createUsers(arr: Employees): HTMLElement {
   const users = document.createElement('div');
@@ -23,15 +25,21 @@ function createUsers(arr: Employees): HTMLElement {
     const userName = document.createElement('div');
     userName.className = 'user-name';
 
-    const bnt = document.createElement('button');
-    if (bank < 0) {
-      bnt.className = 'user-btn red';
-    } else if (bank > 0 && bank < 5) {
-      bnt.className = 'user-btn orang';
-    } else {
-      bnt.className = 'user-btn';
+    function getClassEmployeeName(): string {
+      if (bank < 0) return 'user-btn red';
+      if (bank > 0 && bank < 5) return 'user-btn orang';
+      return 'user-btn';
     }
-    bnt.textContent = ele.employeeName;
+
+    const bnt = createButton({
+      type: 'button',
+      text: ele.employeeName,
+      className: getClassEmployeeName(),
+      onClick: () => {
+        createModal(ele.employeeName);
+      },
+    });
+
     userName.appendChild(bnt);
 
     const cash = document.createElement('div');
