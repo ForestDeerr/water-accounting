@@ -1,17 +1,14 @@
 import type { Employees } from '../../types/baseType';
-
+import { userList } from './user-list';
+import { navigationPanel } from './navigation';
 
 function mainContent(employees: Employees): HTMLElement {
   const container = document.createElement('div');
   container.className = 'main-content';
 
-  const textHeader = document.createElement('h1');
-  textHeader.textContent = 'Water tracker';
-
-  container.appendChild(textHeader);
+  container.append(userList(employees), navigationPanel());
 
   return container;
 }
 
 export { mainContent };
-
