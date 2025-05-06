@@ -13,3 +13,11 @@ type Employee = {
 };
 
 export type Employees = Employee[];
+
+export type ButtonType = {
+  type: 'button' | 'submit' | 'reset';
+  text: string;
+  className: string;
+  onClick?: (event: MouseEvent | KeyboardEvent) => void;
+  disabled?: boolean;
+};
