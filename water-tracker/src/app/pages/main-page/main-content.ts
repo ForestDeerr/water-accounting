@@ -1,4 +1,4 @@
-import type { Employees } from '../../types/baseType';
+import type { Employees } from '../../../types/baseType';
 import { userList } from './user-list';
 import { navigationPanel } from './navigation';
 

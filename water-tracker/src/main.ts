@@ -4,7 +4,7 @@ import './styles/modal-windows.css';
 
 import { loadEmployees } from './api/load-date';
 import { showLoadingMessage } from './app/utils/show-loading-message';
-import { renderMainPages } from './app/pages/main-page';
+import { renderMainPages } from './app/pages/main-page/main-page';
 
 async function loadData() {
   showLoadingMessage();

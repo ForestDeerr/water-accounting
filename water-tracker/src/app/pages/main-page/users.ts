@@ -1,6 +1,6 @@
-import type { Employees, Transactions } from '../../types/baseType';
-import { createButton } from '../utils/create-button';
-import { createModal } from './modal-windows/modal-windows';
+import type { Employees, Transactions } from '../../../types/baseType';
+import { createButton } from '../../utils/create-button';
+import { createModal } from '../modal-windows/modal-windows';
 
 function createUsers(arr: Employees): HTMLElement {
   const users = document.createElement('div');

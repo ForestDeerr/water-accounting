@@ -1,4 +1,4 @@
-import type { Employees } from '../../types/baseType';
+import type { Employees } from '../../../types/baseType';
 import { createUsers } from './users';
 
 function userList(employees: Employees): HTMLElement {
