@@ -6,7 +6,6 @@ function userListForContent(employees: Employees): HTMLElement {
   const container = document.createElement('div');
   container.className = 'user-list-for-edit-page';
 
-
   return container;
 }
 export { userListForContent };
