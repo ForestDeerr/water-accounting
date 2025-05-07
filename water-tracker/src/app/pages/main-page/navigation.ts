@@ -1,4 +1,5 @@
 import { createButton } from '../../utils/create-button';
+import { loadData } from '../../../main';
 
 function navigationPanel(): HTMLElement {
   const container = document.createElement('div');
@@ -9,7 +10,8 @@ function navigationPanel(): HTMLElement {
     text: 'Редактировать',
     className: 'btn-edit',
     onClick: () => {
-      console.log('Редактировать');
+      window.history.pushState({}, '', '/edit');
+      loadData();
     },
   });
 
