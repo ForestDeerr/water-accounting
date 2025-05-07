@@ -5,8 +5,82 @@
   gap: 20px;
 }
 
-.user-list-for-edit-page {
+.users-list-for-edit-page {
   width: 60%;
   border: 1px solid #223157;
   border-radius: 10px;
+  padding: 10px;
+}
+
+.btn-user-edit {
+  width: 120px;
+  height: 35px;
+  color: #ffffff;
+  background-color: #223157;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    background-color 0.5s ease,
+    color 0.3s ease,
+    border-radius 0.3s ease;
+}
+
+.btn-user-edit:hover {
+  color: #223157;
+  background-color: #ffffff;
+  border: 1px solid #223157;
+}
+
+.input-user-edit {
+  flex: 1;
+  height: 35px;
+  border: 1px solid #223157;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-family: Tahoma, sans-serif;
+  color: #223157;
+  min-width: 0;
+}
+
+.input-cash-edit {
+  width: 45px;
+  height: 35px;
+  border: 1px solid #223157;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-family: Tahoma, sans-serif;
+  color: #223157;
+}
+
+.btn-up-cash,
+.btn-lou-cash {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #223157;
+  border-radius: 5px;
+  font-family: Tahoma, sans-serif;
+  color: #ffffff;
+  background-color: #223157;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    background-color 0.5s ease,
+    color 0.3s ease,
+    border-radius 0.3s ease;
+}
+
+.btn-up-cash:hover,
+.btn-lou-cash:hover {
+  background-color: #ffffff;
+  color: #223157;
+}
+
+.user-for-users-list {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  align-items: center;
 }
