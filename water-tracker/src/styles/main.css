@@ -151,12 +151,36 @@ h1 {
   border-radius: 10px;
   background-color: #ffffff;
   border: 1px solid #223157;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
 }
 
 .red {
   color: #ff0000;
 }
 
-.orang{
+.orang {
   color: #ffc400;
+}
+
+.btn-edit {
+  padding-left: 10px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #223157;
+  color: #ffffff;
+  font-family: Tahoma, sans-serif;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition:
+    background-color 0.5s ease,
+    color 0.3s ease,
+    border-radius 0.3s ease;
+}
+
+.btn-edit:hover {
+  background-color: #ffffff;
+  color: #223157;
+  border: 1px solid #223157;
 }
