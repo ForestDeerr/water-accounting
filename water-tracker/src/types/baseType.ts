@@ -4,6 +4,8 @@ type Transaction = {
   amount: number;
 };
 
+export type Transactions = Transaction[]
+
 type Employee = {
   employeeId: string;
   employeeName: string;
