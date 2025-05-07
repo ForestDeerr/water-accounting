@@ -37,24 +37,26 @@
   justify-content: center;
   background-color: #ffffff;
   width: 100%;
-  height: 300px;
   border-radius: 0 0 10px 10px;
 }
 
-.modal-title{
+.modal-table {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  font-family: Tahoma, sans-serif;
+  font-weight: bold;
+  color: #223157;
+}
+
+.modal-title {
   font-family: Tahoma, sans-serif;
   color: #ffffff;
   font-size: 16px;
   font-weight: bold;
-}
-
-.modal-close-btn {
-  background: red;
-  color: rgb(0, 0, 0);
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 4px;
 }
 
 .close-btn {
@@ -80,4 +82,36 @@
 
 .close-line:last-child {
   transform: rotate(-45deg);
+}
+
+.modal-cash-up {
+  display: flex;
+  border-bottom: 1px solid #223157;
+  width: 30%;
+  height: 30px;
+  color: #128044;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.modal-cash-lou {
+  display: flex;
+  border-bottom: 1px solid #223157;
+  width: 30%;
+  height: 30px;
+  color: #d91616;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+.modal-cash-date {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #223157;
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
 }

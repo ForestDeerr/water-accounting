@@ -1,7 +1,10 @@
+import type { Transactions } from '../../../types/baseType';
+
 import { closeModal } from './close-modal-windows';
 import { createCloseButton } from './create-close-button';
+import { modalContent } from './modal-content';
 
-function createModal(employeeName: string): HTMLElement {
+function createModal(employeeName: string, cashs: Transactions): HTMLElement {
   const modalOverlay = document.createElement('div');
   modalOverlay.className = 'modal-overlay';
 
@@ -10,10 +13,6 @@ function createModal(employeeName: string): HTMLElement {
 
   const topWindows = document.createElement('div');
   topWindows.className = 'top-windows';
-
-  const modalContent = document.createElement('div');
-  modalContent.className = 'modal-content';
-  modalContent.innerHTML = 'content';
 
   const modalTitle = document.createElement('div');
   modalTitle.className = 'modal-title';
@@ -25,7 +24,7 @@ function createModal(employeeName: string): HTMLElement {
 
   topWindows.append(modalTitle, closeBtn);
   modal.appendChild(topWindows);
-  modal.appendChild(modalContent);
+  modal.appendChild(modalContent(cashs));
   modalOverlay.appendChild(modal);
 
   modalOverlay.addEventListener('click', (e) => {

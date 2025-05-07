@@ -1,4 +1,4 @@
-import type { Employees } from '../../types/baseType';
+import type { Employees, Transactions } from '../../types/baseType';
 import { createButton } from '../utils/create-button';
 import { createModal } from './modal-windows/modal-windows';
 
@@ -7,8 +7,7 @@ function createUsers(arr: Employees): HTMLElement {
   users.className = 'users';
 
   arr.forEach((ele) => {
-    const cashs = ele.transactions;
-
+    const cashs: Transactions = ele.transactions;
     let bank = 0;
 
     cashs.forEach((ele) => {
@@ -18,7 +17,6 @@ function createUsers(arr: Employees): HTMLElement {
         bank -= ele.amount;
       }
     });
-    console.log(cashs);
     const user = document.createElement('div');
     user.className = 'user';
 
@@ -36,7 +34,7 @@ function createUsers(arr: Employees): HTMLElement {
       text: ele.employeeName,
       className: getClassEmployeeName(),
       onClick: () => {
-        createModal(ele.employeeName);
+        createModal(ele.employeeName, cashs);
       },
     });
 
