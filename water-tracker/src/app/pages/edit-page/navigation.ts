@@ -1,5 +1,6 @@
 import { createButton } from '../../utils/create-button';
 import { loadData } from '../../../main';
+import { createModalForNewEmployee } from './modal-windows-for-new-employee';
 
 function editNavigationPanel(): HTMLElement {
   const container = document.createElement('div');
@@ -10,7 +11,7 @@ function editNavigationPanel(): HTMLElement {
     text: 'Добаваить сотрудника',
     className: 'btn-edit',
     onClick: () => {
-      console.log('Добаваить сотрудника');
+      createModalForNewEmployee();
     },
   });
 

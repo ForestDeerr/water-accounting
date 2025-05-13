@@ -66,6 +66,10 @@
   border-color: #a1a1a1;
 }
 
+.input-cash-edit-alarm {
+  border: 1px solid #ff0000;
+}
+
 .btn-up-cash,
 .btn-lou-cash {
   width: 35px;
