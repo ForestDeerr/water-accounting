@@ -1,4 +1,5 @@
 import { createButton } from '../../utils/create-button';
+import { createModalForEdit } from './modal-windows-for-edit';
 
 function userEdit(name: string, cash: number) {
   const user = document.createElement('div');
@@ -31,21 +32,32 @@ function userEdit(name: string, cash: number) {
   const inputCash = document.createElement('input');
   inputCash.disabled = true;
   inputCash.type = 'text';
+  inputCash.value = cash.toString();
   inputCash.placeholder = cash.toString();
   inputCash.className = 'input-cash-edit';
 
   const btnUpCash = createButton({
     type: 'button',
-    text: '-',
+    text: '+',
     className: 'btn-up-cash',
-    onClick: () => {},
+    onClick: () => {
+        createModalForEdit(name, cash, 'пополнения', (value) => {
+            const newValue = Number(inputCash.value) + value;
+            inputCash.value = newValue.toString();
+        })
+    },
   });
 
   const btnLouCash = createButton({
     type: 'button',
-    text: '+',
+    text: '-',
     className: 'btn-lou-cash',
-    onClick: () => {},
+    onClick: () => {
+        createModalForEdit(name, cash, 'списания', (value) => {
+            const newValue = Number(inputCash.value) - value;
+            inputCash.value = newValue.toString();
+        })
+    },
   });
 
   user.append(btnEdit, inputName, inputCash, btnUpCash, btnLouCash);

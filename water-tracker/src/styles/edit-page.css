@@ -48,7 +48,7 @@
 }
 
 .input-cash-edit {
-  width: 45px;
+  width: 65px;
   height: 35px;
   border: 1px solid #223157;
   border-radius: 5px;
@@ -57,10 +57,13 @@
   color: #223157;
 }
 
-.input-user-edit:disabled,
-.input-cash-edit {
+.input-user-edit:disabled {
   border-color: #a1a1a1;
   color: #a1a1a1;
+}
+
+.input-cash-edit:disabled {
+  border-color: #a1a1a1;
 }
 
 .btn-up-cash,
@@ -92,4 +95,13 @@
   width: 100%;
   gap: 10px;
   align-items: center;
+}
+
+.content-for-edit-modal {
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  gap: 10px;
+  font-family: Tahoma, sans-serif;
+  color: #223157;
 }
