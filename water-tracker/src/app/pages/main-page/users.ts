@@ -7,51 +7,53 @@ function createUsers(arr: Employees): HTMLElement {
   users.className = 'users';
 
   arr.forEach((ele) => {
-    const cashs: Transactions = ele.transactions;
-    let bank = 0;
+    if (!ele.isDelete) {
+      const cashs: Transactions = ele.transactions;
+      let bank = 0;
 
-    cashs.forEach((ele) => {
-      if (ele.type === 'deposit') {
-        bank += ele.amount;
-      } else {
-        bank -= ele.amount;
+      cashs.forEach((ele) => {
+        if (ele.type === 'deposit') {
+          bank += ele.amount;
+        } else {
+          bank -= ele.amount;
+        }
+      });
+      const user = document.createElement('div');
+      user.className = 'user';
+
+      const userName = document.createElement('div');
+      userName.className = 'user-name';
+
+      function getClassEmployeeName(): string {
+        if (bank < 0) return 'user-btn red';
+        if (bank > 0 && bank < 5) return 'user-btn orang';
+        return 'user-btn';
       }
-    });
-    const user = document.createElement('div');
-    user.className = 'user';
 
-    const userName = document.createElement('div');
-    userName.className = 'user-name';
+      const bnt = createButton({
+        type: 'button',
+        text: ele.employeeName,
+        className: getClassEmployeeName(),
+        onClick: () => {
+          createModal(ele.employeeName, cashs);
+        },
+      });
 
-    function getClassEmployeeName(): string {
-      if (bank < 0) return 'user-btn red';
-      if (bank > 0 && bank < 5) return 'user-btn orang';
-      return 'user-btn';
+      userName.appendChild(bnt);
+
+      const cash = document.createElement('div');
+      if (bank < 0) {
+        cash.className = 'cash red';
+      } else if (bank > 0 && bank < 5) {
+        cash.className = 'cash orang';
+      } else {
+        cash.className = 'cash';
+      }
+      cash.textContent = String(Math.round(bank * 100) / 100);
+
+      user.append(userName, cash);
+      users.append(user);
     }
-
-    const bnt = createButton({
-      type: 'button',
-      text: ele.employeeName,
-      className: getClassEmployeeName(),
-      onClick: () => {
-        createModal(ele.employeeName, cashs);
-      },
-    });
-
-    userName.appendChild(bnt);
-
-    const cash = document.createElement('div');
-    if (bank < 0) {
-      cash.className = 'cash red';
-    } else if (bank > 0 && bank < 5) {
-      cash.className = 'cash orang';
-    } else {
-      cash.className = 'cash';
-    }
-    cash.textContent = String(Math.round(bank * 100) / 100);
-
-    user.append(userName, cash);
-    users.append(user);
   });
 
   return users;

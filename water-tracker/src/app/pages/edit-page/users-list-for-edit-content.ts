@@ -18,8 +18,9 @@ function userListForContent(employees: Employees): HTMLElement {
         bank -= ele.amount;
       }
     });
-
-    container.append(userEdit(user, bank));
+    if (!user.isDelete) {
+      container.append(userEdit(user, bank));
+    }
   });
 
   return container;

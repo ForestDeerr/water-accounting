@@ -1,6 +1,7 @@
 import { saveDataToBase } from '../../../api/sava-date';
 import { Employee, Transaction } from '../../../types/baseType';
 import { createButton } from '../../utils/create-button';
+import { createModalForDelete } from './modal-windows-for-delete';
 import { createModalForEdit } from './modal-windows-for-edit';
 
 const delSvg = `
@@ -19,7 +20,9 @@ function userEdit(user: Employee, cash: number) {
     type: 'button',
     text: '',
     className: 'btn-user-del',
-    onClick: () => {},
+    onClick: () => {
+      createModalForDelete(user);
+    },
   });
 
   btnDelete.insertAdjacentHTML('beforeend', delSvg);

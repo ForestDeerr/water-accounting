@@ -19,8 +19,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 35px;
+  min-width: 35px;
   height: 35px;
+  padding: 5px;
   background-color: #223157;
   border: 1px solid #223157;
   border-radius: 5px;
