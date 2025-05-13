@@ -60,49 +60,53 @@ function createModalForNewEmployee() {
   inputCash.setAttribute('step', '0.01');
   inputCash.className = 'input-cash-edit';
 
+  function createUser() {
+    const name = inputName.value.trim();
+    const amount = Number(inputCash.value);
+    let isValid = true;
+
+    if (!inputName.checkValidity()) {
+      inputName.setCustomValidity('Введите корректное имя (мин. 3 буквы)');
+      inputName.reportValidity();
+      inputName.classList.add('input-cash-edit-alarm');
+      inputName.focus();
+      return;
+    }
+
+    if (!nameRegex.test(name)) {
+      inputName.classList.add('input-cash-edit-alarm');
+      isValid = false;
+    }
+
+    if (!isValid) return;
+
+    cleanupAndClose();
+
+    const createEmployee: Employee = {
+      employeeId: generateEmployeeId(),
+      employeeName: name,
+      isActive: true,
+      isDelete: false,
+      transactions: [],
+    };
+
+    const transaction: Transaction = {
+      date: new Date().toISOString().slice(0, 10),
+      type: 'deposit',
+      amount: parseFloat(amount.toFixed(2)),
+    };
+
+    createEmployee.transactions.push(transaction);
+    saveDataToBase([createEmployee]);
+    loadData();
+  }
+
   const btnSava = createButton({
     type: 'button',
     text: 'Ok',
     className: 'btn-up-cash',
     onClick: () => {
-      const name = inputName.value.trim();
-      const amount = Number(inputCash.value);
-      let isValid = true;
-
-      if (!inputName.checkValidity()) {
-        inputName.setCustomValidity('Введите корректное имя (мин. 3 буквы)');
-        inputName.reportValidity();
-        inputName.classList.add('input-cash-edit-alarm');
-        inputName.focus();
-        return;
-      }
-
-      if (!nameRegex.test(name)) {
-        inputName.classList.add('input-cash-edit-alarm');
-        isValid = false;
-      }
-
-      if (!isValid) return;
-
-      cleanupAndClose();
-
-      const createEmployee: Employee = {
-        employeeId: generateEmployeeId(),
-        employeeName: name,
-        isActive: true,
-        isDelete: false,
-        transactions: [],
-      };
-
-      const transaction: Transaction = {
-        date: new Date().toISOString().slice(0, 10),
-        type: 'deposit',
-        amount: parseFloat(amount.toFixed(2)),
-      };
-
-      createEmployee.transactions.push(transaction);
-      saveDataToBase([createEmployee]);
-      loadData();
+      createUser();
     },
   });
 
@@ -120,7 +124,7 @@ function createModalForNewEmployee() {
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') cleanupAndClose();
     if (e.key === 'Enter') {
-      cleanupAndClose();
+      createUser();
     }
   };
 

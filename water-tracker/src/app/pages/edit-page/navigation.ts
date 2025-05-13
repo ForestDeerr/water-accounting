@@ -15,15 +15,6 @@ function editNavigationPanel(): HTMLElement {
     },
   });
 
-  const btnCalculate = createButton({
-    type: 'button',
-    text: 'Сохранить изменения',
-    className: 'btn-edit',
-    onClick: () => {
-      console.log('Сохранить изменения');
-    },
-  });
-
   const btnBack = createButton({
     type: 'button',
     text: 'Выход',
@@ -34,7 +25,7 @@ function editNavigationPanel(): HTMLElement {
     },
   });
 
-  container.append(btnEdit, btnCalculate, btnBack);
+  container.append(btnEdit, btnBack);
   return container;
 }
 

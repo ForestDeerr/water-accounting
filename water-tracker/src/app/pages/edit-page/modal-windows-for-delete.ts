@@ -56,7 +56,10 @@ function createModalForDelete(user: Employee) {
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') cleanupAndClose();
     if (e.key === 'Enter') {
+      user.isDelete = true;
+      saveDataToBase([user]);
       cleanupAndClose();
+      loadData();
     }
   };
 
