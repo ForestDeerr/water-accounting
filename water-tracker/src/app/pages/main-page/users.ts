@@ -48,7 +48,7 @@ function createUsers(arr: Employees): HTMLElement {
     } else {
       cash.className = 'cash';
     }
-    cash.textContent = String(bank);
+    cash.textContent = String(Math.round(bank * 100) / 100);
 
     user.append(userName, cash);
     users.append(user);

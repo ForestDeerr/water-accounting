@@ -19,7 +19,7 @@ function userListForContent(employees: Employees): HTMLElement {
       }
     });
 
-    container.append(userEdit(user.employeeName, bank));
+    container.append(userEdit(user, bank));
   });
 
   return container;

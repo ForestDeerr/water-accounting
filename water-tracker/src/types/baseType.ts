@@ -1,12 +1,12 @@
-type Transaction = {
+export type Transaction = {
   date: string;
   type: 'deposit' | 'expense';
   amount: number;
 };
 
-export type Transactions = Transaction[]
+export type Transactions = Transaction[];
 
-type Employee = {
+export type Employee = {
   employeeId: string;
   employeeName: string;
   isActive: boolean;
