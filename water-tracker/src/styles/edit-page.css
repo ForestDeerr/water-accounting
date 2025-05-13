@@ -9,10 +9,36 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 60%;
+  width: 73%;
   border: 1px solid #223157;
   border-radius: 10px;
   padding: 10px;
+}
+
+.btn-user-del {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background-color: #223157;
+  border: 1px solid #223157;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  transition:
+    background-color 0.5s ease,
+    color 0.3s ease,
+    border-radius 0.3s ease;
+}
+
+.btn-user-del:hover {
+  background-color: #ffffff;
+  color: #223157;
+}
+
+.btn-user-del:hover svg {
+  filter: drop-shadow(2px 2px 4px #ff0000);
 }
 
 .btn-user-edit {
@@ -44,7 +70,7 @@
   padding-left: 10px;
   font-family: Tahoma, sans-serif;
   color: #223157;
-  min-width: 0;
+  min-width: 173px;
 }
 
 .input-cash-edit {
