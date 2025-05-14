@@ -20,7 +20,8 @@ function navigationPanel(): HTMLElement {
     text: 'Списать воду',
     className: 'btn-edit',
     onClick: () => {
-      console.log('Списать воду');
+      window.history.pushState({}, '', '/water');
+      loadData();
     },
   });
 
