@@ -1,4 +1,4 @@
-import '../../../styles/edit-page.css';
+import '../../../styles/water-page.css';
 
 import { Employees } from '../../../types/baseType';
 import { createHeader } from '../../header/header';

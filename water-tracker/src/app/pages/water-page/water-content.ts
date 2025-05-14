@@ -1,11 +1,12 @@
 import type { Employees } from '../../../types/baseType';
-import { editNavigationPanel } from '../edit-page/navigation';
+import { waterNavigationPanel } from './navigation';
+import { usersListForWater } from './users-list-for-water';
 
 function waterContent(employees: Employees): HTMLElement {
   const container = document.createElement('div');
   container.className = 'edit-content';
 
-  container.append(editNavigationPanel());
+  container.append(usersListForWater(employees), waterNavigationPanel());
 
   return container;
 }

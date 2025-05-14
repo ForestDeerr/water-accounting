@@ -1,0 +1,110 @@
+.user-for-water-page {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.user-content {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.control-content {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.content-for-control {
+  display: flex;
+  border: 1px solid #223157;
+  flex-direction: column;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  height: 100%;
+  gap: 10px;
+}
+
+.users-list-for-water-page {
+  display: flex;
+  width: 73%;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.users-for-water {
+  display: flex;
+  border: 1px solid #223157;
+  flex-direction: column;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+}
+
+.label-for-user {
+  display: flex;
+  width: 80%;
+  font-family: Tahoma, sans-serif;
+  color: #ffffff;
+  margin-right: 15px;
+}
+
+.user-label {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+  margin: 2px;
+}
+
+.user-name-for-water {
+  font-size: 16px;
+  font-family: Tahoma, sans-serif;
+  color: #223157;
+  cursor: pointer;
+}
+
+.user-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #223157;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+  background-color: #ffffff;
+}
+
+.user-checkbox:checked {
+  background-color: #223157;
+  border-color: #223157;
+  background-color: #ffffff;
+}
+
+.user-checkbox:checked::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #223157;
+  border-radius: 2px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.input-cash-water {
+  height: 35px;
+  border: 1px solid #223157;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: Tahoma, sans-serif;
+  color: #223157;
+}
+
+.input-cash-water::placeholder {
+  color: #a1a1a1;
+}

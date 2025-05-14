@@ -3,7 +3,6 @@ import { userEdit } from './user-edit';
 
 function userListForContent(employees: Employees): HTMLElement {
   const arr = Object.entries(employees).map(([id, obj]) => ({ id, ...obj }));
-  console.log(arr);
   const container = document.createElement('div');
   container.className = 'users-list-for-edit-page';
 
