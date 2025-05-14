@@ -1,6 +1,8 @@
+import { Employees } from '../../../types/baseType';
 import { createButton } from '../../utils/create-button';
+import { modalWindowsForWrite } from './modal-windows-for-wrate';
 
-function renderContent() {
+function renderContent(employees: Employees) {
   const controlContent = document.createElement('div');
   controlContent.className = 'control-content';
 
@@ -24,8 +26,21 @@ function renderContent() {
   const btnCalculate = createButton({
     type: 'button',
     text: 'Списать сумму',
-    className: 'btn-edit',
-    onClick: () => {},
+    className: 'btn-edit-disable',
+    onClick: () => {
+      modalWindowsForWrite(employees, Number(inputForControl.value));
+    },
+  });
+
+  inputForControl.addEventListener('input', () => {
+    const value = Number(inputForControl.value);
+    if (value > 0) {
+      btnCalculate.classList.remove('btn-edit-disable');
+      btnCalculate.classList.add('btn-edit');
+    } else {
+      btnCalculate.classList.remove('btn-edit');
+      btnCalculate.classList.add('btn-edit-disable');
+    }
   });
 
   contentForControl.append(inputForControl, btnCalculate);

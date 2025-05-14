@@ -1,4 +1,5 @@
 import { saveDataToBase } from '../../../api/sava-date';
+import { loadData } from '../../../main';
 import { Employee } from '../../../types/baseType';
 
 function userWater(user: Employee): HTMLElement {
@@ -23,9 +24,11 @@ function userWater(user: Employee): HTMLElement {
     if (checkbox.checked) {
       user.isActive = true;
       saveDataToBase([user]);
+      loadData();
     } else {
       user.isActive = false;
       saveDataToBase([user]);
+      loadData();
     }
   });
 

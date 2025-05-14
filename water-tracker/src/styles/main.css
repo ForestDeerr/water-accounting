@@ -184,3 +184,18 @@ h1 {
   color: #223157;
   border: 1px solid #223157;
 }
+
+.btn-edit-disable {
+  padding-left: 10px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #b3b3b3;
+  color: #ffffff;
+  font-family: Tahoma, sans-serif;
+  cursor: not-allowed;
+  transition:
+    background-color 0.5s ease,
+    color 0.3s ease,
+    border-radius 0.3s ease;
+  pointer-events: none;
+}

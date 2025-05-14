@@ -31,7 +31,7 @@ function usersListForWater(employees: Employees): HTMLElement {
   });
 
   userContent.append(usersForWater);
-  container.append(userContent, renderContent());
+  container.append(userContent, renderContent(employees));
 
   return container;
 }
