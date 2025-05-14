@@ -1,9 +1,7 @@
 import type { Transactions } from '../../../types/baseType';
-import { transformsArr } from '../../../types/transforms-arr';
+import { transformsArr } from '../../utils/transforms-arr';
 
 function modalContent(cashs: Transactions): HTMLElement {
-  console.log(transformsArr(cashs));
-
   const transactions = transformsArr(cashs);
 
   let allCash = 0;
@@ -25,25 +23,30 @@ function modalContent(cashs: Transactions): HTMLElement {
 
     const cashUp = document.createElement('div');
     cashUp.className = 'modal-cash-up';
-    cashUp.innerHTML = `+ ${date[1]}`;
+    cashUp.innerHTML = `+ ${date[1].toFixed(2)}`;
 
     const cashDate = document.createElement('div');
     cashDate.className = 'modal-cash-date';
 
     const cashDateTable = document.createElement('p');
+    cashDateTable.className = 'modal-data';
     cashDateTable.innerText = date[0];
 
     const cashAllCashTable = document.createElement('p');
     cashAllCashTable.className = getClassCash();
-    cashAllCashTable.innerText = `${allCash} BYN`;
+    cashAllCashTable.innerText = `${allCash.toFixed(2)} BYN`;
 
     cashDate.append(cashDateTable, cashAllCashTable);
 
     const cashLou = document.createElement('div');
     cashLou.className = 'modal-cash-lou';
-    cashLou.innerHTML = `- ${date[2]}`;
+    cashLou.innerHTML = `- ${date[2].toFixed(2)}`;
 
-    modalTable.append(cashUp, cashDate, cashLou);
+    const line = document.createElement('div');
+    line.className = 'line-modal';
+    line.append(cashUp, cashDate, cashLou);
+
+    modalTable.prepend(line);
   });
 
   modalContent.append(modalTable);

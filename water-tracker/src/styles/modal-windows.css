@@ -62,14 +62,17 @@
 
 .modal-table {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
   padding: 10px;
   width: 100%;
-  max-width: 300px;
+  max-width: 350px;
   font-family: Tahoma, sans-serif;
   font-weight: bold;
   color: #223157;
+  flex-direction: column;
+}
+
+.line-modal {
+  display: flex;
 }
 
 .modal-title {
@@ -155,4 +158,8 @@
 
 .line-2 {
   font-size: 12px;
+}
+
+.modal-data {
+  font-size: 10px;
 }
