@@ -3,7 +3,7 @@ import { createButton } from '../../utils/create-button';
 import { closeModal } from '../modal-windows/close-modal-windows';
 import { createCloseButton } from '../modal-windows/create-close-button';
 
-function modalAuthorization(link: string) {
+function modalAuthorization() {
   const pas = sessionStorage.getItem('pass');
 
   const modalOverlay = document.createElement('div');
@@ -52,7 +52,7 @@ function modalAuthorization(link: string) {
       if (passInput.value === pas) {
         sessionStorage.setItem('authorization', 'true');
         cleanupAndClose();
-        window.history.pushState({}, '', `/${link}`);
+        window.history.pushState({}, '', `/`);
         loadData();
       } else {
         passInput.setCustomValidity('Неверный пароль');
