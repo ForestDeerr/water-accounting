@@ -54,8 +54,8 @@ function userEdit(user: Employee, cash: number) {
   const inputCash = document.createElement('input');
   inputCash.disabled = true;
   inputCash.type = 'text';
-  inputCash.value = String(Math.round(cash * 100) / 100);
-  inputCash.placeholder = String(Math.round(cash * 100) / 100);
+  inputCash.value = String((Math.round(cash * 100) / 100).toFixed(2));
+  inputCash.placeholder = String((Math.round(cash * 100) / 100).toFixed(2));
   inputCash.className = 'input-cash-edit';
 
   const btnUpCash = createButton({

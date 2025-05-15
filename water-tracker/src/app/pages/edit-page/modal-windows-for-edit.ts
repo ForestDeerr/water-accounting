@@ -19,7 +19,7 @@ function createModalForEdit(
 
   const modalTitle = document.createElement('div');
   modalTitle.className = 'modal-title';
-  modalTitle.innerHTML = `${employeeName} : ${cash} BYN`;
+  modalTitle.innerHTML = `${employeeName} : ${cash.toFixed(2)} BYN`;
 
   const closeBtn = createCloseButton(() => {
     closeModal(modalOverlay);
