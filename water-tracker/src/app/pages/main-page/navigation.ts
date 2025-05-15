@@ -1,5 +1,6 @@
 import { createButton } from '../../utils/create-button';
 import { loadData } from '../../../main';
+import { modalAuthorization } from '../authorization-page/modal-authorization';
 
 function navigationPanel(): HTMLElement {
   const container = document.createElement('div');
@@ -10,8 +11,12 @@ function navigationPanel(): HTMLElement {
     text: 'Редактировать',
     className: 'btn-edit',
     onClick: () => {
-      window.history.pushState({}, '', '/edit');
-      loadData();
+      if (sessionStorage.getItem('authorization')) {
+        window.history.pushState({}, '', '/edit');
+        loadData();
+      } else {
+        modalAuthorization('edit');
+      }
     },
   });
 
@@ -20,8 +25,12 @@ function navigationPanel(): HTMLElement {
     text: 'Списать воду',
     className: 'btn-edit',
     onClick: () => {
-      window.history.pushState({}, '', '/water');
-      loadData();
+      if (sessionStorage.getItem('authorization')) {
+        window.history.pushState({}, '', '/water');
+        loadData();
+      } else {
+        modalAuthorization('water');
+      }
     },
   });
 
