@@ -80,9 +80,16 @@ function modalAuthorization() {
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') cleanupAndClose();
     if (e.key === 'Enter') {
-      cleanupAndClose();
-      window.history.pushState({}, '', '/');
-      loadData();
+      if (passInput.value === pas) {
+        sessionStorage.setItem('authorization', 'true');
+        cleanupAndClose();
+        window.history.pushState({}, '', `/`);
+        loadData();
+      } else {
+        passInput.setCustomValidity('Неверный пароль');
+        passInput.reportValidity();
+        passInput.classList.add('input-error');
+      }
     }
   };
 
