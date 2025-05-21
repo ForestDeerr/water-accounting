@@ -6,7 +6,7 @@ import { generateEmployeeId } from '../../utils/generate-employee-id';
 import { closeModal } from '../modal-windows/close-modal-windows';
 import { createCloseButton } from '../modal-windows/create-close-button';
 
-const nameRegex = /^[a-zA-Zа-яА-ЯёЁ\s-]{3,}$/;
+const nameRegex = /^[A-Za-zА-Яа-яЁё.\\s]{3,}$/;
 
 function createModalForNewEmployee() {
   const modalOverlay = document.createElement('div');
@@ -39,7 +39,7 @@ function createModalForNewEmployee() {
   inputName.type = 'text';
   inputName.className = 'input-user-edit';
   inputName.minLength = 3;
-  inputName.pattern = '[A-Za-zА-Яа-яЁё\\s]{3,}';
+  inputName.pattern = '[A-Za-zА-Яа-яЁё.\\s]{3,}';
   inputName.required = true;
 
   inputName.addEventListener('input', () => {
