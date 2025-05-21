@@ -6,7 +6,7 @@ import { generateEmployeeId } from '../../utils/generate-employee-id';
 import { closeModal } from '../modal-windows/close-modal-windows';
 import { createCloseButton } from '../modal-windows/create-close-button';
 
-const nameRegex = /^[A-Za-zА-Яа-яЁё.\\s]{3,}$/;
+const nameRegex = /^[A-Za-zА-Яа-яЁё\\.\\s]{3,}$/;
 
 function createModalForNewEmployee() {
   const modalOverlay = document.createElement('div');
@@ -39,7 +39,8 @@ function createModalForNewEmployee() {
   inputName.type = 'text';
   inputName.className = 'input-user-edit';
   inputName.minLength = 3;
-  inputName.pattern = '[A-Za-zА-Яа-яЁё.\\s]{3,}';
+  inputName.pattern = '[A-Za-zА-Яа-яЁё\\.\\s]{3,}';
+
   inputName.required = true;
 
   inputName.addEventListener('input', () => {
@@ -63,22 +64,14 @@ function createModalForNewEmployee() {
   function createUser() {
     const name = inputName.value.trim();
     const amount = Number(inputCash.value);
-    let isValid = true;
 
     if (!inputName.checkValidity()) {
-      inputName.setCustomValidity('Введите корректное имя (мин. 3 буквы)');
+      inputName.setCustomValidity('Введите корректное имя, например: Иванов В.В.');
       inputName.reportValidity();
       inputName.classList.add('input-cash-edit-alarm');
       inputName.focus();
       return;
     }
-
-    if (!nameRegex.test(name)) {
-      inputName.classList.add('input-cash-edit-alarm');
-      isValid = false;
-    }
-
-    if (!isValid) return;
 
     cleanupAndClose();
 
