@@ -2,6 +2,7 @@ import { loadData } from '../../../main';
 import { createButton } from '../../utils/create-button';
 import { closeModal } from '../modal-windows/close-modal-windows';
 import { createCloseButton } from '../modal-windows/create-close-button';
+import { changePassword } from './change-password';
 
 function modalAuthorization() {
   const pas = sessionStorage.getItem('pass');
@@ -62,11 +63,17 @@ function modalAuthorization() {
     },
   });
 
-  const passChange = document.createElement('p');
-  passChange.className = 'pass-change';
-  passChange.textContent = 'Сменить пароль.';
+  const btnChengPass = createButton({
+    type: 'button',
+    text: 'Сменить пароль.',
+    className: 'btn-cheng-pass',
+    onClick: () => {
+      closeModal(modalOverlay);
+      changePassword()
+    },
+  });
 
-  content.append(passTitle, passInput, btnLogin, passChange);
+  content.append(passTitle, passInput, btnLogin, btnChengPass);
   modalContent.append(content);
 
   topWindows.append(modalTitle, closeBtn);

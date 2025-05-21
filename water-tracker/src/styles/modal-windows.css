@@ -196,3 +196,13 @@
 .pass-input::placeholder {
   color: #b3b3b3;
 }
+
+.btn-cheng-pass{
+  cursor: pointer;
+  font-size: 12px;
+  transition: font-size 0.3s ease;
+}
+
+.btn-cheng-pass:hover{
+  font-size: 13px;
+}
