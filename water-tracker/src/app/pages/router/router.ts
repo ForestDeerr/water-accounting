@@ -9,9 +9,9 @@ function route(employees: Employees) {
   const path = window.location.pathname;
   const authorization = sessionStorage.getItem('authorization');
 
-  if (path === '/edit' && authorization) {
+  if (path === '/water-accounting/edit' && authorization) {
     document.body.replaceChildren(renderEditPage(employees));
-  } else if (path === '/water' && authorization) {
+  } else if (path === '/water-accounting/water' && authorization) {
     document.body.replaceChildren(renderWaterPage(employees));
   } else {
     document.body.replaceChildren(renderMainPages(employees));
