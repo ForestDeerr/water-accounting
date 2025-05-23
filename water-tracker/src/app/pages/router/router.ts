@@ -3,6 +3,8 @@ import { renderEditPage } from '../edit-page/edit-page';
 import { Employees } from '../../../types/baseType';
 import { renderWaterPage } from '../water-page/water-page';
 
+const basePath = '/water-accounting';
+
 function route(employees: Employees) {
   const path = window.location.pathname;
   const authorization = sessionStorage.getItem('authorization');
@@ -13,8 +15,18 @@ function route(employees: Employees) {
     document.body.replaceChildren(renderWaterPage(employees));
   } else {
     document.body.replaceChildren(renderMainPages(employees));
-    window.history.pushState({}, '', '/');
+    navigateTo('/')
+    // window.history.pushState({}, '', '/');
   }
 }
 
-export { route };
+function navigateTo(path: string) {
+  window.history.pushState({}, '', basePath + path);
+}
+
+function getCurrentPath(): string {
+  return window.location.pathname.replace(basePath, '') || '/';
+}
+
+export { route, navigateTo, getCurrentPath };
+

@@ -1,6 +1,7 @@
 import { createButton } from '../../utils/create-button';
 import { loadData } from '../../../main';
 import { createModalForNewEmployee } from './modal-windows-for-new-employee';
+import { navigateTo } from '../router/router';
 
 function editNavigationPanel(): HTMLElement {
   const container = document.createElement('div');
@@ -20,7 +21,8 @@ function editNavigationPanel(): HTMLElement {
     text: 'Выход',
     className: 'btn-edit',
     onClick: () => {
-      window.history.pushState({}, '', '/');
+      navigateTo('/')
+      // window.history.pushState({}, '', '/');
       loadData();
     },
   });

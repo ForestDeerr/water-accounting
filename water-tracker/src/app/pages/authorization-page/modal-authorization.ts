@@ -2,6 +2,7 @@ import { loadData } from '../../../main';
 import { createButton } from '../../utils/create-button';
 import { closeModal } from '../modal-windows/close-modal-windows';
 import { createCloseButton } from '../modal-windows/create-close-button';
+import { navigateTo } from '../router/router';
 import { changePassword } from './change-password';
 
 function modalAuthorization() {
@@ -53,7 +54,8 @@ function modalAuthorization() {
       if (passInput.value === pas) {
         sessionStorage.setItem('authorization', 'true');
         cleanupAndClose();
-        window.history.pushState({}, '', `/`);
+        navigateTo('/')
+        // window.history.pushState({}, '', `/`);
         loadData();
       } else {
         passInput.setCustomValidity('Неверный пароль');
@@ -90,7 +92,8 @@ function modalAuthorization() {
       if (passInput.value === pas) {
         sessionStorage.setItem('authorization', 'true');
         cleanupAndClose();
-        window.history.pushState({}, '', `/`);
+        navigateTo('/')
+        // window.history.pushState({}, '', `/`);
         loadData();
       } else {
         passInput.setCustomValidity('Неверный пароль');

@@ -1,5 +1,6 @@
 import { createButton } from '../../utils/create-button';
 import { loadData } from '../../../main';
+import { navigateTo } from '../router/router';
 
 function waterNavigationPanel(): HTMLElement {
   const container = document.createElement('div');
@@ -10,7 +11,8 @@ function waterNavigationPanel(): HTMLElement {
     text: 'Выход',
     className: 'btn-edit',
     onClick: () => {
-      window.history.pushState({}, '', '/');
+      navigateTo('/')
+      // window.history.pushState({}, '', '/');
       loadData();
     },
   });

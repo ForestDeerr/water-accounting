@@ -4,6 +4,7 @@ import { createButton } from '../../utils/create-button';
 import { writeAmount } from '../../utils/write-amount';
 import { closeModal } from '../modal-windows/close-modal-windows';
 import { createCloseButton } from '../modal-windows/create-close-button';
+import { navigateTo } from '../router/router';
 
 function modalWindowsForWrite(employees: Employees, cash: number) {
   const modalOverlay = document.createElement('div');
@@ -64,7 +65,8 @@ function modalWindowsForWrite(employees: Employees, cash: number) {
     onClick: () => {
       writeAmount(employees, cash);
       cleanupAndClose();
-      window.history.pushState({}, '', '/');
+      navigateTo('/')
+      // window.history.pushState({}, '', '/');
       loadData();
     },
   });
@@ -85,7 +87,8 @@ function modalWindowsForWrite(employees: Employees, cash: number) {
     if (e.key === 'Enter') {
       writeAmount(employees, cash);
       cleanupAndClose();
-      window.history.pushState({}, '', '/');
+      navigateTo('/')
+      // window.history.pushState({}, '', '/');
       loadData();
     }
   };

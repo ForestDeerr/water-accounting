@@ -1,6 +1,7 @@
 import { createButton } from '../../utils/create-button';
 import { loadData } from '../../../main';
 import { modalAuthorization } from '../authorization-page/modal-authorization';
+import { navigateTo } from '../router/router';
 
 function navigationPanel(): HTMLElement {
   const container = document.createElement('div');
@@ -21,7 +22,8 @@ function navigationPanel(): HTMLElement {
     className: 'btn-edit',
     onClick: () => {
       if (sessionStorage.getItem('authorization')) {
-        window.history.pushState({}, '', '/edit');
+        navigateTo('/edit')
+        // window.history.pushState({}, '', '/edit');
         loadData();
       } else {
         modalAuthorization();
@@ -35,7 +37,8 @@ function navigationPanel(): HTMLElement {
     className: 'btn-edit',
     onClick: () => {
       if (sessionStorage.getItem('authorization')) {
-        window.history.pushState({}, '', '/water');
+        navigateTo('/water')
+        // window.history.pushState({}, '', '/water');
         loadData();
       } else {
         modalAuthorization();
