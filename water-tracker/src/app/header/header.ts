@@ -1,3 +1,5 @@
+import { APP_VERSION } from "../../config";
+
 const logoSvg = `
 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40mm" height="30mm" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
 viewBox="0 0 4000 3000"
@@ -34,10 +36,13 @@ function createHeader(): HTMLElement {
   const text = document.createElement('b');
   text.textContent = 'отдел 308';
 
+  const versionLabel = document.createElement('b');
+  versionLabel.className = 'version-label';
+  versionLabel.textContent = APP_VERSION;
+
   container.innerHTML = logoSvg;
   textContainer.append(textHeader, text);
-  container.append(textContainer);
-
+  container.append(textContainer, versionLabel);
 
   return container;
 }
