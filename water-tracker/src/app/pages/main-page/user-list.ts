@@ -1,8 +1,10 @@
 import type { Employees } from '../../../types/baseType';
 import { createUsers } from './users';
+import { calculateTotalCash } from './calculate-total-cash';
 
 function userList(employees: Employees): HTMLElement {
   const arr = Object.entries(employees).map(([id, obj]) => ({ id, ...obj }));
+  const totalCash = calculateTotalCash(arr);
 
   const container = document.createElement('div');
   container.className = 'user-list';
@@ -16,7 +18,8 @@ function userList(employees: Employees): HTMLElement {
 
   const textCash = document.createElement('div');
   textCash.className = 'text-cash';
-  textCash.textContent = 'Баланс';
+  textCash.style.whiteSpace = 'pre-line';
+  textCash.textContent = `Баланс \n${totalCash} BYN`;
 
   textContent.append(textUser, textCash);
 
