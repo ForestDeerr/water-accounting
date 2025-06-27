@@ -210,3 +210,12 @@ h1 {
     border-radius 0.3s ease;
   pointer-events: none;
 }
+
+.btn-arrow {
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.rotate-up svg {
+  transform: rotate(-180deg);
+}

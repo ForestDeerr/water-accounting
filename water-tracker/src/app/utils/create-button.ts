@@ -1,4 +1,4 @@
-import { ButtonType } from "../../types/baseType";
+import { ButtonType } from '../../types/baseType';
 
 function createButton({
   type,
@@ -6,13 +6,24 @@ function createButton({
   className,
   onClick,
   disabled = false,
+  iconSvg,
+  iconClass,
 }: ButtonType) {
   const button = document.createElement('button');
   button.type = type;
-  button.textContent = text;
+  if (text) {
+    button.textContent = text;
+  }
   button.className = className;
   button.disabled = disabled;
   if (onClick) button.addEventListener('click', onClick);
+
+  if (iconSvg) {
+    const iconWrapper = document.createElement('span');
+    iconWrapper.innerHTML = iconSvg.trim();
+    if (iconClass) iconWrapper.className = iconClass;
+    button.appendChild(iconWrapper);
+  }
 
   return button;
 }

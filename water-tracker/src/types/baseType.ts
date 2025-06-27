@@ -18,8 +18,10 @@ export type Employees = Employee[];
 
 export type ButtonType = {
   type: 'button' | 'submit' | 'reset';
-  text: string;
+  text?: string;
   className: string;
   onClick?: (event: MouseEvent | KeyboardEvent) => void;
   disabled?: boolean;
+  iconSvg?: string;
+  iconClass?: string;
 };
