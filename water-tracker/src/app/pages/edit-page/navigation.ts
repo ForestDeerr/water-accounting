@@ -9,7 +9,7 @@ function editNavigationPanel(): HTMLElement {
 
   const btnEdit = createButton({
     type: 'button',
-    text: 'Добаваить сотрудника',
+    text: 'Добавить сотрудника',
     className: 'btn-edit',
     onClick: () => {
       createModalForNewEmployee();
@@ -21,7 +21,7 @@ function editNavigationPanel(): HTMLElement {
     text: 'Выход',
     className: 'btn-edit',
     onClick: () => {
-      navigateTo('/')
+      navigateTo('/');
       // window.history.pushState({}, '', '/');
       loadData();
     },
