@@ -6,21 +6,23 @@ function userListForContent(employees: Employees): HTMLElement {
   const container = document.createElement('div');
   container.className = 'users-list-for-edit-page';
 
-  arr.forEach((user) => {
-    const cashs: Transactions = user.transactions;
-    let bank = 0;
+  [...arr]
+    .sort((a, b) => a.employeeName.localeCompare(b.employeeName))
+    .forEach((user) => {
+      const cashs: Transactions = user.transactions;
+      let bank = 0;
 
-    cashs.forEach((ele) => {
-      if (ele.type === 'deposit') {
-        bank += ele.amount;
-      } else {
-        bank -= ele.amount;
+      cashs.forEach((ele) => {
+        if (ele.type === 'deposit') {
+          bank += ele.amount;
+        } else {
+          bank -= ele.amount;
+        }
+      });
+      if (!user.isDelete) {
+        container.append(userEdit(user, bank));
       }
     });
-    if (!user.isDelete) {
-      container.append(userEdit(user, bank));
-    }
-  });
 
   return container;
 }

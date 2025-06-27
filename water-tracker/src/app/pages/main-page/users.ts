@@ -1,12 +1,25 @@
 import type { Employees, Transactions } from '../../../types/baseType';
 import { createButton } from '../../utils/create-button';
 import { createModal } from '../modal-windows/modal-windows';
+import { returnArrow } from './user-list';
 
 function createUsers(arr: Employees): HTMLElement {
   const users = document.createElement('div');
   users.className = 'users';
 
-  arr.forEach((ele) => {
+  let sortedEmployees = arr;
+
+  if (returnArrow()) {
+    sortedEmployees = [...arr].sort((a, b) =>
+      a.employeeName.localeCompare(b.employeeName)
+    );
+  } else {
+    sortedEmployees = [...arr].sort((a, b) =>
+      b.employeeName.localeCompare(a.employeeName)
+    );
+  }
+
+  sortedEmployees.forEach((ele) => {
     if (!ele.isDelete) {
       const cashs: Transactions = ele.transactions;
       let bank = 0;
