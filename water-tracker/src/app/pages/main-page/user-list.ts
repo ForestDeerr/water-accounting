@@ -19,7 +19,7 @@ function userList(employees: Employees): HTMLElement {
   const textCash = document.createElement('div');
   textCash.className = 'text-cash';
   textCash.style.whiteSpace = 'pre-line';
-  textCash.textContent = `Баланс \n${totalCash} BYN`;
+  textCash.textContent = `Баланс \n${totalCash.toFixed(2)} BYN`;
 
   textContent.append(textUser, textCash);
 
