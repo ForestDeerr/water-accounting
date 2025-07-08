@@ -36,9 +36,11 @@ function startGame(canvas: HTMLCanvasElement) {
   let animationId: number | null = null;
   let obstacleIntervalId: number | null = null;
 
-  let obstacleSpeed = 4; // начальная скорость
-  const maxObstacleSpeed = 50; // максимальная скорость
-  const speedIncrement = 0.001; // насколько увеличиваем скорость каждый кадр
+  let obstacleSpeed = 4;
+  const maxObstacleSpeed = 50;
+  const speedIncrement = 0.001;
+
+  let lastTimestamp = performance.now();
 
   function drawKPI() {
     ctx.fillStyle = '#000';
@@ -59,36 +61,31 @@ function startGame(canvas: HTMLCanvasElement) {
     ctx.font = '14px Courier New, monospace';
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
-    const x = 15;
-    const y = 15;
-    ctx.fillText(`У сотрудника ${getNameUser()} yровень KPI: ${score}`, x, y);
+    ctx.fillText(`У сотрудника ${getNameUser()} yровень KPI: ${score}`, 15, 15);
   }
 
   function drawStart() {
     ctx.fillStyle = 'black';
     ctx.font = '14px Courier New, monospace';
-
-    const x = canvas.width / 2 - 90;
-    const y = canvas.height / 2;
-    ctx.fillText(`Для старта жми SPACE`, x, y);
+    ctx.fillText(
+      `Для старта жми SPACE`,
+      canvas.width / 2 - 90,
+      canvas.height / 2
+    );
   }
 
   drawStart();
 
   function drawFinish() {
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = 'black';
 
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-
-    // Первая строка (обычная)
     ctx.font = '14px Courier New, monospace';
     ctx.fillText(`Вы не справились с документом.`, centerX, centerY - 15);
-
-    // Вторая строка: "Нажмите" + жирный "ENTER" + "чтобы начать заново"
-    ctx.font = '14px Courier New, monospace';
     ctx.fillText(`Нажмите`, centerX - 110, centerY);
 
     ctx.font = 'bold 14px Courier New, monospace';
@@ -97,12 +94,9 @@ function startGame(canvas: HTMLCanvasElement) {
     ctx.font = '14px Courier New, monospace';
     ctx.fillText(`чтобы начать заново.`, centerX + 65, centerY);
 
-    // Третья строка: "Нажмите" + жирный "ESC" + "чтобы выйти"
-    ctx.font = '14px Courier New, monospace';
     ctx.fillText(`Нажмите`, centerX - 70, centerY + 15);
-
     ctx.font = 'bold 14px Courier New, monospace';
-    ctx.fillText(`ESC`, centerX + -20, centerY + 15);
+    ctx.fillText(`ESC`, centerX - 20, centerY + 15);
 
     ctx.font = '14px Courier New, monospace';
     ctx.fillText(`чтобы выйти.`, centerX + 50, centerY + 15);
@@ -123,23 +117,26 @@ function startGame(canvas: HTMLCanvasElement) {
         document.removeEventListener('keydown', onKeyDown);
         document.addEventListener('keydown', onKeyDownEnter);
         if (animationId) cancelAnimationFrame(animationId);
-        if (obstacleIntervalId) clearInterval(obstacleIntervalId);
+        if (obstacleIntervalId) clearTimeout(obstacleIntervalId);
         break;
       }
     }
   }
 
-  function update() {
+  function update(timestamp = performance.now()) {
+    const delta = (timestamp - lastTimestamp) / 1000;
+    lastTimestamp = timestamp;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawScore();
 
     if (obstacleSpeed < maxObstacleSpeed) {
-      obstacleSpeed += speedIncrement;
+      obstacleSpeed += speedIncrement * delta * 60;
     }
 
     if (!hero.grounded) {
-      hero.vy += hero.gravity;
-      hero.y += hero.vy;
+      hero.vy += hero.gravity * delta * 60;
+      hero.y += hero.vy * delta * 60;
 
       if (hero.y >= 150) {
         hero.y = 150;
@@ -148,19 +145,18 @@ function startGame(canvas: HTMLCanvasElement) {
           hero.grounded = true;
           setTimeout(() => {
             hero.canJump = true;
-          }, 50); // задержка после прыжка
+          }, 50);
         }
       }
     }
 
     for (const obs of obstacles) {
-      obs.x -= obstacleSpeed; // движемся с изменяющейся скоростью
+      obs.x -= obstacleSpeed * delta * 60;
     }
 
     for (let i = obstacles.length - 1; i >= 0; i--) {
       const obs = obstacles[i];
 
-      // Если препятствие прошло героя и не было засчитано
       if (!obs.passed && obs.x + obs.width < hero.x) {
         obs.passed = true;
         score = +(score + 0.01).toFixed(2);
@@ -196,12 +192,12 @@ function startGame(canvas: HTMLCanvasElement) {
       passed: false,
     });
 
-    const baseDelay = 2000; // стартовая задержка (мс)
-    const minDelay = 300; // минимальная задержка (мс)
+    const baseDelay = 2000;
+    const minDelay = 300;
 
-    function getNextDelay(obstacleSpeed: number) {
-      const delay = baseDelay - (obstacleSpeed - 4) * 450; // начальная скорость
-      return Math.max(delay, minDelay) + Math.random() * 600; // немного рандома
+    function getNextDelay(speed: number) {
+      const delay = baseDelay - (speed - 4) * 450;
+      return Math.max(delay, minDelay) + Math.random() * 600;
     }
 
     const nextDelay = getNextDelay(obstacleSpeed);
@@ -218,6 +214,7 @@ function startGame(canvas: HTMLCanvasElement) {
     obstacles.length = 0;
     obstacleSpeed = 4;
     gameOver = false;
+    lastTimestamp = performance.now();
     update();
 
     spawnObstacleWithDelay();
@@ -227,6 +224,7 @@ function startGame(canvas: HTMLCanvasElement) {
   if (!gameOver) {
     resetGame();
   }
+
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.code === 'Space') {
       if (gameOver) {
