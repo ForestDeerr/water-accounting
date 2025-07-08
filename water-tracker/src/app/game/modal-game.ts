@@ -1,3 +1,4 @@
+import { loadScores } from '../../api/load-score';
 import { saveScores } from '../../api/save-score';
 import '../../styles/game.css';
 import { PlayerScore } from '../../types/baseType';
@@ -83,8 +84,9 @@ function modalGame(scores: PlayerScore[]) {
     gameOn = false;
   }
 
-  function sendDateToSave() {
-    const filterScores = [...scores];
+  async function sendDateToSave() {
+
+    const filterScores = (await loadScores()) ?? [];
     const user = {
       name: getNameUser(),
       score: getScore(),
