@@ -2,8 +2,10 @@ import { createButton } from '../../utils/create-button';
 import { loadData } from '../../../main';
 import { modalAuthorization } from '../authorization-page/modal-authorization';
 import { navigateTo } from '../router/router';
+import { modalGame } from '../../game/modal-game';
+import { PlayerScore } from '../../../types/baseType';
 
-function navigationPanel(): HTMLElement {
+function navigationPanel(scores: PlayerScore[]): HTMLElement {
   const container = document.createElement('div');
   container.className = 'navigation-panel';
 
@@ -16,14 +18,22 @@ function navigationPanel(): HTMLElement {
     },
   });
 
+  const btnGame = createButton({
+    type: 'button',
+    text: 'Поднять KPI',
+    className: 'btn-edit',
+    onClick: () => {
+      modalGame(scores);
+    },
+  });
+
   const btnEdit = createButton({
     type: 'button',
     text: 'Редактировать',
     className: 'btn-edit',
     onClick: () => {
       if (sessionStorage.getItem('authorization')) {
-        navigateTo('/edit')
-        // window.history.pushState({}, '', '/edit');
+        navigateTo('/edit');
         loadData();
       } else {
         modalAuthorization();
@@ -37,8 +47,7 @@ function navigationPanel(): HTMLElement {
     className: 'btn-edit',
     onClick: () => {
       if (sessionStorage.getItem('authorization')) {
-        navigateTo('/water')
-        // window.history.pushState({}, '', '/water');
+        navigateTo('/water');
         loadData();
       } else {
         modalAuthorization();
@@ -59,7 +68,7 @@ function navigationPanel(): HTMLElement {
   if (sessionStorage.getItem('authorization')) {
     container.append(btnEdit, btnCalculate, btnExit);
   } else {
-    container.append(btnLogin);
+    container.append(btnLogin, btnGame);
   }
 
   return container;

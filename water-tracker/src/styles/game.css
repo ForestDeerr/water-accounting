@@ -1,0 +1,107 @@
+canvas {
+  display: block;
+  background: #ffffff;
+  margin: 0 auto;
+  /* border: 1px solid #000000; */
+}
+
+.modal-game {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-score-content {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.content-for-game-modal {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  gap: 10px;
+  font-family: Tahoma, sans-serif;
+  color: #223157;
+  width: 100%;
+}
+
+.game-text-content {
+  display: flex;
+  color: #223157;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.game-text-name {
+  display: flex;
+  width: 80%;
+  font-family: Tahoma, sans-serif;
+  color: #223157;
+  justify-content: flex-start;
+}
+
+.game-text-score {
+  display: flex;
+  width: 20%;
+  font-family: Tahoma, sans-serif;
+  color: #223157;
+  justify-content: flex-start;
+}
+
+.game-start-menu-content {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.btn-start-game {
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #223157;
+  color: #ffffff;
+  font-family: Tahoma, sans-serif;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition:
+    background-color 0.5s ease,
+    color 0.3s ease,
+    border-radius 0.3s ease;
+}
+
+.btn-start-game:hover {
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #223157;
+  border: 1px solid #223157;
+}
+
+.btn-start-game-disable {
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #b3b3b3;
+  color: #ffffff;
+  font-family: Tahoma, sans-serif;
+  cursor: not-allowed;
+  transition:
+    background-color 0.5s ease,
+    color 0.3s ease,
+    border-radius 0.3s ease;
+  pointer-events: none;
+}
+
+.label-start {
+  font-family: Tahoma, sans-serif;
+  color: #223157;
+}

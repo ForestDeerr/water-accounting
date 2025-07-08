@@ -1,11 +1,11 @@
 import { renderMainPages } from '../main-page/main-page';
 import { renderEditPage } from '../edit-page/edit-page';
-import { Employees } from '../../../types/baseType';
+import { Employees, PlayerScore } from '../../../types/baseType';
 import { renderWaterPage } from '../water-page/water-page';
 
 const basePath = '/water-accounting';
 
-function route(employees: Employees) {
+function route(employees: Employees, scores: PlayerScore[]) {
   const path = window.location.pathname;
   const authorization = sessionStorage.getItem('authorization');
 
@@ -14,9 +14,8 @@ function route(employees: Employees) {
   } else if (path === '/water-accounting/water' && authorization) {
     document.body.replaceChildren(renderWaterPage(employees));
   } else {
-    document.body.replaceChildren(renderMainPages(employees));
-    navigateTo('/')
-    // window.history.pushState({}, '', '/');
+    document.body.replaceChildren(renderMainPages(employees, scores));
+    navigateTo('/');
   }
 }
 
@@ -29,4 +28,3 @@ function getCurrentPath(): string {
 }
 
 export { route, navigateTo, getCurrentPath };
-

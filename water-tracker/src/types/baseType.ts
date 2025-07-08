@@ -25,3 +25,8 @@ export type ButtonType = {
   iconSvg?: string;
   iconClass?: string;
 };
+
+export type PlayerScore = {
+  name: string;
+  score: number;
+};
