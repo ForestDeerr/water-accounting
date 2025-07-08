@@ -24,11 +24,13 @@ function usersListForWater(employees: Employees): HTMLElement {
   const usersForWater = document.createElement('div');
   usersForWater.className = 'users-for-water';
 
-  arr.forEach((user) => {
-    if (!user.isDelete) {
-      usersForWater.append(userWater(user));
-    }
-  });
+  [...arr]
+    .sort((a, b) => a.employeeName.localeCompare(b.employeeName))
+    .forEach((user) => {
+      if (!user.isDelete) {
+        usersForWater.append(userWater(user));
+      }
+    });
 
   userContent.append(usersForWater);
   container.append(userContent, renderContent(employees));
